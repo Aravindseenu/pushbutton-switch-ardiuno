@@ -1,0 +1,51 @@
+/* coded by Aravind seenu @AK
+ * code for button/switch input
+ * required number of inputs can be tested 
+ * this can be implemented either with pull-up or pull-down resistors
+ */
+const int Pb1 = 6; //Pushbutton connected to pin D6
+const int Pb2 = 7; //Pushbutton connected to pin D7
+const int LED = 13; //LED connected to pin D13
+int v1 = 0;  
+int v2 = 0;  // Variable for reading pushbutton status
+
+void setup() {
+  // put your setup code here, to run once:
+ pinMode (LED, OUTPUT); //LED pin is Output
+ pinMode (Pb1, INPUT_PULLUP);
+ pinMode (Pb2, INPUT_PULLUP);//pushbutton pin is Output with internal Pull-up resistor
+ Serial.begin(9600);
+}
+
+void loop() {
+  
+v1 = digitalRead(Pb1); //Reads the status of the pushbutton/switch
+v2 = digitalRead(Pb2); //Reads the status of the pb/switch
+
+if (v1 == LOW) //If the Pushbutton is pressed
+    {
+       delay(10); //10 milliseconds debouncing Delay
+       if (v1 == LOW) //check again if the Pushbutton is still pressed
+    {
+     Serial.println("Pushbutton");
+        
+        //digitalWrite(LED, HIGH); //LED ON
+        //delay(5000); //5 Second Delay
+        //digitalWrite(LED, LOW); //LED OFF
+    }
+    }
+    //----------------------condition for testing one button/switch-------------------//
+ if (v2 == HIGH) //If the Pushbutton is pressed
+    {
+       delay(10); //10 milliseconds debouncing Delay
+       if (v2 == HIGH) //check again if the Pushbutton is still pressed
+    {
+     Serial.println("LIMITswitch");
+        
+        //digitalWrite(LED, HIGH); //LED ON
+        //delay(5000); //5 Second Delay
+        //digitalWrite(LED, LOW); //LED OFF
+    }
+    //----------repeat the number of loops for required inputs------------//
+    }
+}
